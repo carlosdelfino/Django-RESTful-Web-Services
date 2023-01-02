@@ -1,0 +1,6 @@
+docs/Django RESTful Web Services - Gaston C. Hillar.pdf
+__pycache__/
+__pycache__/*
+migrations/
+migrations/*
+venv/
