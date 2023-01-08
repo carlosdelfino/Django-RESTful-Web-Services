@@ -17,7 +17,7 @@ class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
     name = 'dronecategory-list'
-    filter_fields = (
+    filterset_fields = (
         'name',
         )
     search_fields = (
@@ -36,7 +36,7 @@ class DroneList(generics.ListCreateAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-list'
-    filter_fields = (
+    filterset_fields = (
         'name',
         'drone_category',
         'manufacturing_date',
@@ -59,7 +59,7 @@ class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()
     serializer_class = PilotSerializer
     name = 'pilot-list'
-    filter_fields = (
+    filterset_fields = (
         'name',
         'gender',
         'races_count',
