@@ -37,3 +37,18 @@ http GET ":8000/drones/drones/?limit=500"
 
 ## Passo 8
 pip install django-filter
+
+## Passo 9
+http ":8000/drones/drone-categories/?search=Quadcopter"
+
+## Passo 10
+http ":8000/drones/drones/?drone_category=1&has_it_competed=False&ordering=-name"
+
+## Passo 11
+http ":8000/drones/competitions/?pilot_name=Penelope+Pitstop&drone_name=WonderDrone"
+
+## Passo 12
+http ":8000/drones/competitions/?min_distance_in_feet=700&max_distance_in_feet=9000&from_achievement_date=2017-10-18&to_achievement_date=2017-10-22&ordering=-achievement_date
+
+## Passo 13
+http ":8000/drones/drones?search=G"
