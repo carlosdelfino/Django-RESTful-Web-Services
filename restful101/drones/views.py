@@ -11,8 +11,7 @@ from drones.serializers import DroneSerializer
 from drones.serializers import PilotSerializer
 from drones.serializers import PilotCompetitionSerializer
 
-from django_filters import rest_framework as filters
-from django_filters import  AllValuesFilter, DateTimeFilter, NumberFilter
+from django_filters import rest_framework as filters 
 
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
@@ -79,12 +78,12 @@ class PilotDetail(generics.RetrieveUpdateDestroyAPIView):
     name = 'pilot-detail'
 
 class CompetitionFilter(filters.FilterSet):
-    from_achievement_date = DateTimeFilter(name='distance_achievement_date', lookup_expr='gte')
-    to_achievement_date = DateTimeFilter(name='distance_achievement_date', lookup_expr='lte')
-    min_distance_in_feet = NumberFilter(name='distance_in_feet', lookup_expr='gte')
-    max_distance_in_feet = NumberFilter(name='distance_in_feet', lookup_expr='lte')
-    drone_name = AllValuesFilter(name='drone__name')
-    pilot_name = AllValuesFilter(name='pilot__name')
+    from_achievement_date = filters.DateTimeFilter(field_name='distance_achievement_date', lookup_expr='gte')
+    to_achievement_date = filters.DateTimeFilter(field_name='distance_achievement_date', lookup_expr='lte')
+    min_distance_in_feet = filters.NumberFilter(field_name='distance_in_feet', lookup_expr='gte')
+    max_distance_in_feet = filters.NumberFilter(field_name='distance_in_feet', lookup_expr='lte')
+    drone_name = filters.AllValuesFilter(field_name='drone__name')
+    pilot_name = filters.AllValuesFilter(field_name='pilot__name')
     class Meta:
         model = Competition
         fields = (
@@ -103,7 +102,7 @@ class CompetitionList(generics.ListCreateAPIView):
     queryset = Competition.objects.all()
     serializer_class = PilotCompetitionSerializer
     name = 'competition-list'
-    filter_class = CompetitionFilter
+    filterset_class = CompetitionFilter
     ordering_fields = (
         'distance_in_feet',
         'distance_achievement_date',
