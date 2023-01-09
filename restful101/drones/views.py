@@ -13,6 +13,9 @@ from drones.serializers import PilotCompetitionSerializer
 
 from django_filters import rest_framework as filters 
 
+from rest_framework import permissions
+from drones import custompermission
+
 class DroneCategoryList(generics.ListCreateAPIView):
     queryset = DroneCategory.objects.all()
     serializer_class = DroneCategorySerializer
@@ -48,12 +51,23 @@ class DroneList(generics.ListCreateAPIView):
     ordering_fields = (
         'name',
         'manufacturing_date',
-)
+        )
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermission.IsCurrentUserOwnerOrReadOnly,
+        )
+        
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)    
 
 class DroneDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Drone.objects.all()
     serializer_class = DroneSerializer
     name = 'drone-detail'
+    permission_classes = (
+        permissions.IsAuthenticatedOrReadOnly,
+        custompermission.IsCurrentUserOwnerOrReadOnly,
+        )
 
 class PilotList(generics.ListCreateAPIView):
     queryset = Pilot.objects.all()

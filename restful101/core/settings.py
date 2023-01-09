@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'toys.apps.ToysConfig',
-    'drones.apps.DronesConfig'
+    'drones.apps.DronesConfig',
 ]
 
 MIDDLEWARE = [
@@ -145,4 +145,8 @@ REST_FRAMEWORK = {
         'rest_framework.filters.OrderingFilter',
         'rest_framework.filters.SearchFilter',
         ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        )
 }
