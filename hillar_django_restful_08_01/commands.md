@@ -37,3 +37,20 @@ http://localhost:8000/drones/drones/12
 
 ## Passo 8
 python manage.py migrate
+
+## Passo 9
+python manage.py shell
+
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
+
+# Replace user01 with the name you configured for this user
+user = User.objects.get(username="user01")
+token = Token.objects.create(user=user)
+print(token.key)
+
+e7b94c10e1c92263c8775e6abccd8274d7c1e7b5
+## Passo 10
+http :8000/drones/pilots/
+
+http :8000/drones/pilots/ "Authorization: Token e7b94c10e1c92263c8775e6abccd8274d7c1e7b5"
